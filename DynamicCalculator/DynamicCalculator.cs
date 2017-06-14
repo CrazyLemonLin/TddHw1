@@ -6,13 +6,10 @@ namespace DynamicCalculator
 {
     public class DynamicCalculator
     {
-        public DynamicCalculator()
-        {
-        }
-
         public dynamic Calculate(List<dynamic> orders, int divideSize, Func<dynamic, int> fieldSelector)
         {
-            if (divideSize == 0) return 0;
+            if (divideSize == 0) { return 0; }
+
             var data = orders.Select(fieldSelector);
 
             var ordersCount = data.Count();

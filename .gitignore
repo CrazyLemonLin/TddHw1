@@ -3,3 +3,14 @@
 /DynamicCalculator/bin
 /packages
 /DynamicCalculatorTest/obj
+/DynamicCalculatorTest/bin/Debug/DynamicCalculator.dll
+/DynamicCalculatorTest/bin/Debug/DynamicCalculator.pdb
+/DynamicCalculatorTest/bin/Debug/DynamicCalculatorTest.dll
+/DynamicCalculatorTest/bin/Debug/DynamicCalculatorTest.pdb
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.Core.dll
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.Core.pdb
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.Core.xml
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.dll
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.pdb
+/DynamicCalculatorTest/bin/Debug/FluentAssertions.xml
+/DynamicCalculatorTest/bin/Debug/nunit_random_seed.tmp
