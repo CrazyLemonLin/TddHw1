@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace DynamicCalculatorTest
@@ -68,7 +71,7 @@ namespace DynamicCalculatorTest
             var result = target.Calculate(_orders, 3, o => o.Cost);
 
             //assert
-            CollectionAssert.AreEqual(expected, result);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [TestMethod]
@@ -82,7 +85,23 @@ namespace DynamicCalculatorTest
             var result = target.Calculate(_orders, 4, o => o.Revenue);
 
             //assert
-            CollectionAssert.AreEqual(expected, result);
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [TestMethod]
+        public void CalculateTest_尋找的欄位若不存在_預期會拋RuntimeBinderException()
+        {
+            //arrange
+            var target = new DynamicCalculator.DynamicCalculator();
+
+            //act
+            Action act = () =>
+            {
+                target.Calculate(_orders, 4, o => o.NotHere);
+            };               
+
+            //assert 
+             act.ShouldThrow<RuntimeBinderException>();
         }
     }
 }
