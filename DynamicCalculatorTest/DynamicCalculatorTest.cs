@@ -63,11 +63,25 @@ namespace DynamicCalculatorTest
             //arrange
             var target = new DynamicCalculator.DynamicCalculator();
             var expected = new List<int> { 6, 15, 24, 21 };
+
             //act
             var result = target.Calculate(_orders, 3, o => o.Cost);
 
             //assert
+            CollectionAssert.AreEqual(expected, result);
+        }
 
+        [TestMethod]
+        public void CalculateTest_4筆成一組_取得Revenue的總和_預期為_50_66_60()
+        {
+            //arrange
+            var target = new DynamicCalculator.DynamicCalculator();
+            var expected = new List<int> { 50, 66, 60 };
+
+            //act
+            var result = target.Calculate(_orders, 4, o => o.Revenue);
+
+            //assert
             CollectionAssert.AreEqual(expected, result);
         }
     }
