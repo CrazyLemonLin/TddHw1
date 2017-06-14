@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace DynamicCalculatorTest
@@ -8,8 +7,7 @@ namespace DynamicCalculatorTest
     public class DynamicCalculatorTest
     {
         private List<dynamic> _orders;
-        [ClassInitialize]
-        public void SetUp()
+        public DynamicCalculatorTest()
         {
             _orders = new List<dynamic> {
                 new
@@ -57,14 +55,13 @@ namespace DynamicCalculatorTest
                     Id =11,Cost=11,Revenue=21,SellPrice=31
                 }
             };
-
         }
 
         [TestMethod]
         public void CalculateTest_3筆成一組_取得Cost的總和_預期為_6_15_24_21()
         {
             //arrange
-            var target = new DynamicCartlculator();
+            var target = new DynamicCalculator.DynamicCalculator();
             var expected = new List<int> { 6, 15, 24, 21 };
             //act
             var result = target.Calculate(_orders, 3, o => o.Cost);
