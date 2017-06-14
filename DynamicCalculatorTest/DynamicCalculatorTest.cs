@@ -68,7 +68,7 @@ namespace DynamicCalculatorTest
             var expected = new List<int> { 6, 15, 24, 21 };
 
             //act
-            var result = target.Calculate(_orders, 3, o => o.Cost);
+            var result = target.Calculate(_orders, 3, o => o.Cost) as List<int>;
 
             //assert
             result.Should().BeEquivalentTo(expected);
@@ -82,7 +82,7 @@ namespace DynamicCalculatorTest
             var expected = new List<int> { 50, 66, 60 };
 
             //act
-            var result = target.Calculate(_orders, 4, o => o.Revenue);
+            var result = target.Calculate(_orders, 4, o => o.Revenue) as List<int>;
 
             //assert
             result.Should().BeEquivalentTo(expected);
@@ -98,10 +98,23 @@ namespace DynamicCalculatorTest
             Action act = () =>
             {
                 target.Calculate(_orders, 4, o => o.NotHere);
-            };               
+            };
 
             //assert 
-             act.ShouldThrow<RuntimeBinderException>();
+            act.ShouldThrow<RuntimeBinderException>();
+        }
+
+        [TestMethod]
+        public void CalculateTest_筆數若輸入為0_則傳回0()
+        {
+            //arrange
+            var target = new DynamicCalculator.DynamicCalculator();
+            var expected = 0;
+            //act
+            var result = Convert.ToInt32(target.Calculate(_orders, 0, o => o.Cost));
+
+            //assert
+            result.Should().Be(expected);
         }
     }
 }

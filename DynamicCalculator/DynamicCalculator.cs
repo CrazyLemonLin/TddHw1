@@ -10,7 +10,7 @@ namespace DynamicCalculator
         {
         }
 
-        public List<int> Calculate(List<dynamic> orders, int divideSize, Func<dynamic, int> fieldSelector)
+        public dynamic Calculate(List<dynamic> orders, int divideSize, Func<dynamic, int> fieldSelector)
         {
             var data = orders.Select(fieldSelector);
 
