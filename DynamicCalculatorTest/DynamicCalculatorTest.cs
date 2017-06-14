@@ -7,7 +7,7 @@ namespace DynamicCalculatorTest
     [TestClass]
     public class DynamicCalculatorTest
     {
-        private  List<dynamic> _orders;
+        private List<dynamic> _orders;
         [ClassInitialize]
         public void SetUp()
         {
@@ -58,6 +58,20 @@ namespace DynamicCalculatorTest
                 }
             };
 
+        }
+
+        [TestMethod]
+        public void CalculateTest_3筆成一組_取得Cost的總和_預期為_6_15_24_21()
+        {
+            //arrange
+            var target = new DynamicCartlculator();
+            var expected = new List<int> { 6, 15, 24, 21 };
+            //act
+            var result = target.Calculate(_orders, 3, o => o.Cost);
+
+            //assert
+
+            CollectionAssert.AreEqual(expected, result);
         }
     }
 }
