@@ -111,7 +111,7 @@ namespace DynamicCalculatorTest
             var target = new DynamicCalculator.DynamicCalculator();
             var expected = 0;
             //act
-            var result = Convert.ToInt32(target.Calculate(_orders, 0, o => o.Cost));
+            int result = Convert.ToInt32(target.Calculate(_orders, 0, o => o.Cost));
 
             //assert
             result.Should().Be(expected);
