@@ -10,9 +10,7 @@ namespace DynamicCalculator
         {
             if (divideSize <= 0) { throw new ArgumentException("divideSize應為大於0之正整數"); }
 
-            var data = orders.Select(fieldSelector);
-
-            var ordersCount = data.Count();
+            var ordersCount = orders.Count();
 
             var divideCount = Math.Ceiling((decimal) ordersCount / divideSize);
 
@@ -20,7 +18,7 @@ namespace DynamicCalculator
 
             for (int i = 0; i < divideCount; i++)
             {
-                var result = data.Skip(i * divideSize).Take(divideSize).Sum();
+                var result = orders.Skip(i * divideSize).Take(divideSize).Sum(fieldSelector);
                 results.Add(result);
             }
 
