@@ -14,15 +14,10 @@ namespace DynamicCalculator
 
             var divideCount = Math.Ceiling((decimal) ordersCount / divideSize);
 
-            var results = new List<int>();
-
             for (int i = 0; i < divideCount; i++)
             {
-                var result = orders.Skip(i * divideSize).Take(divideSize).Sum(fieldSelector);
-                results.Add(result);
+                yield return orders.Skip(i * divideSize).Take(divideSize).Sum(fieldSelector);
             }
-
-            return results;
         }
     }
 }

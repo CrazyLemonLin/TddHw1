@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using System.Linq;
 
 namespace DynamicCalculatorTest
 {
@@ -69,7 +70,7 @@ namespace DynamicCalculatorTest
             var expected = new List<int> { 6, 15, 24, 21 };
 
             //act
-            var result = target.Calculate(_orders, 3, o => o.Cost) as List<int>;
+            var result = target.Calculate(_orders, 3, o => o.Cost).ToList();
 
             //assert
             result.Should().BeEquivalentTo(expected);
@@ -83,7 +84,7 @@ namespace DynamicCalculatorTest
             var expected = new List<int> { 50, 66, 60 };
 
             //act
-            var result = target.Calculate(_orders, 4, o => o.Revenue) as List<int>;
+            var result = target.Calculate(_orders, 4, o => o.Revenue).ToList();
 
             //assert
             result.Should().BeEquivalentTo(expected);
@@ -98,7 +99,7 @@ namespace DynamicCalculatorTest
             //act
             Action act = () =>
             {
-                target.Calculate(_orders, 4, o => o.NotHere);
+                target.Calculate(_orders, 4, o => o.NotHere).ToList();
             };
 
             //assert 
@@ -115,7 +116,7 @@ namespace DynamicCalculatorTest
             //act
             Action act = () =>
             {
-                target.Calculate(_orders, divideSize, o => o.Cost);                   ;
+                target.Calculate(_orders, divideSize, o => o.Cost).ToList();                   ;
             };
 
             //assert
