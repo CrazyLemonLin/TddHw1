@@ -6,7 +6,7 @@ namespace DynamicCalculator
 {
     public class DynamicCalculator
     {
-        public dynamic Calculate(List<dynamic> orders, int divideSize, Func<dynamic, int> fieldSelector)
+        public IEnumerable<int> Calculate<T>(List<T> orders, int divideSize, Func<T, int> fieldSelector)
         {
             if (divideSize <= 0) { throw new ArgumentException("divideSize應為大於0之正整數"); }
 
