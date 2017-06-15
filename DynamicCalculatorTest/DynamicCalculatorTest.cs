@@ -3,10 +3,11 @@ using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace DynamicCalculatorTest
 {
-    [TestClass]
+    [TestFixture]
     public class DynamicCalculatorTest
     {
         private List<dynamic> _orders;
@@ -60,7 +61,7 @@ namespace DynamicCalculatorTest
             };
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateTest_3筆成一組_取得Cost的總和_預期為_6_15_24_21()
         {
             //arrange
@@ -74,7 +75,7 @@ namespace DynamicCalculatorTest
             result.Should().BeEquivalentTo(expected);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateTest_4筆成一組_取得Revenue的總和_預期為_50_66_60()
         {
             //arrange
@@ -88,7 +89,7 @@ namespace DynamicCalculatorTest
             result.Should().BeEquivalentTo(expected);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateTest_尋找的欄位若不存在_預期會拋RuntimeBinderException()
         {
             //arrange
@@ -104,17 +105,22 @@ namespace DynamicCalculatorTest
             act.ShouldThrow<RuntimeBinderException>();
         }
 
-        [TestMethod]
-        public void CalculateTest_筆數若輸入為0_則傳回0()
+        [Test]
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void CalculateTest_筆數若輸入若小於等於0_則傳回ArgumentException(int divideSize)
         {
             //arrange
             var target = new DynamicCalculator.DynamicCalculator();
-            var expected = 0;
             //act
-            int result = Convert.ToInt32(target.Calculate(_orders, 0, o => o.Cost));
+            Action act = () =>
+            {
+                target.Calculate(_orders, divideSize, o => o.Cost)
+                    ;
+            };
 
             //assert
-            result.Should().Be(expected);
+            act.ShouldThrow<ArgumentException>();
         }
     }
 }
