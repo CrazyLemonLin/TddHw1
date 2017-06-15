@@ -8,7 +8,7 @@ namespace DynamicCalculator
     {
         public dynamic Calculate(List<dynamic> orders, int divideSize, Func<dynamic, int> fieldSelector)
         {
-            if (divideSize == 0) { return 0; }
+            if (divideSize <= 0) { throw new ArgumentException("divideSize應為大於0之正整數"); }
 
             var data = orders.Select(fieldSelector);
 

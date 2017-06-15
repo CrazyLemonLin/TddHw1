@@ -115,12 +115,13 @@ namespace DynamicCalculatorTest
             //act
             Action act = () =>
             {
-                target.Calculate(_orders, divideSize, o => o.Cost)
-                    ;
+                target.Calculate(_orders, divideSize, o => o.Cost);                   ;
             };
 
             //assert
-            act.ShouldThrow<ArgumentException>();
+            act
+                .ShouldThrow<ArgumentException>()
+                .WithMessage("divideSize應為大於0之正整數");
         }
     }
 }
